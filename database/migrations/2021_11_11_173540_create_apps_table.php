@@ -14,7 +14,7 @@ class CreateAppsTable extends Migration
     public function up()
     {
         Schema::create('apps', function (Blueprint $table) {
-            $table->bigInteger("id");
+            $table->bigIncrements("id");
             $table->string("name");
             $table->timestamps();
         });
