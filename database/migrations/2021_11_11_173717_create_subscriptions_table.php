@@ -15,10 +15,11 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements("id");
-            $table->tinyInteger("status");
+            $table->enum('status', ['Started', 'Renewed', 'Cancelled'])->default('Started');
             $table->bigInteger("device_id");
             $table->bigInteger("app_id");
             $table->string("receipt");
+            $table->datetime("expired_at");
             $table->timestamps();
         });
     }

@@ -16,6 +16,14 @@ use App\Http\Controllers\API\DeviceController;
 */
 Route::post('/register', [DeviceController::class, 'register']);
 
+Route::post('/purchase', [DeviceController::class, 'purchase']);
+
+Route::post('/mock-google', [DeviceController::class, 'mockGoogle']);
+
+Route::post('/mock-apple', [DeviceController::class, 'mockApple']);
+
+Route::post('/check-subscription', [DeviceController::class, 'checkSubscription']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
