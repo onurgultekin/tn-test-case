@@ -11,6 +11,7 @@ use Validator;
 use Hash;
 use Carbon\Carbon;
 use App\Jobs\SubscriptionStatusJob;
+use GuzzleHttp\Client;
 
 class DeviceController extends Controller
 {
@@ -63,10 +64,10 @@ class DeviceController extends Controller
             $os = $device->os;
             if ($os === 'android') {
                 // Call Google Play Store mock API
-                $mockResponse = $this->mockGoogle($request);
+                return $this->goToStoreService('api/mock-google', 'Mock google service is not available.', $request->receipt);
             } else if ($os === 'ios') {
                 // Call App Store mock API
-                $mockResponse = $this->mockApple($request);
+                return $this->goToStoreService('api/mock-apple', 'Mock apple service is not available.', $request->receipt);
             } else {
                 return response()->json(["status" => false, "message" => "Specified OS does not exist."], 404);
             }
@@ -146,27 +147,21 @@ class DeviceController extends Controller
         }
     }
 
-    public function checkSubscription(Request $request) {
-        // Check subscription service
-
-       $validator =  Validator::make($request->all(),[
-            'client_token' => 'required|max:255',
+    protected function goToStoreService($url, $message, $receipt) {
+        $client = new Client([
+            'base_uri' => 'http://localhost:8001/',
+            'headers' => [ 'Content-Type' => 'application/json']
         ]);
-
-        if ($validator->fails()) {
-            return response()->json(["status" => false, "message" => $validator->messages()->first()], 400);
-        }
-        $device = Device::where("client_token", $request->client_token)->first();
-
-        if (!$device) {
-            return response()->json(["status" => false, "message" => "Client token not found"], 404);
+        $res = $client->request('POST', $url, [
+            'body' => json_encode(
+            [
+                'receipt' => $receipt
+            ]
+        )]);
+        if ($res->getStatusCode() === 200) {
+            return json_decode($res->getBody());
         } else {
-            $subscription = Subscription::where("device_id", $device->id)->where("app_id", $device->app_id)->first();
-            if (!$subscription) {
-                return response()->json(["status" => false, "message" => "Subscription not found"], 404);
-            } else {
-                return response()->json(["status" => true, "message" => $subscription], 404);
-            }
+            return response()->json(["status" => false, "message" => $message], 500);
         }
     }
 }

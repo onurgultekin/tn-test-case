@@ -18,6 +18,9 @@ class CreateAppsTable extends Migration
             $table->string("name");
             $table->timestamps();
         });
+        Schema::table('devices', function (Blueprint $table) {
+            $table->foreign("app_id")->references('id')->on('apps');
+        });
     }
 
     /**

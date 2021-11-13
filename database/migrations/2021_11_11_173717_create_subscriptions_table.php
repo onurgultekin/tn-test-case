@@ -16,11 +16,13 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->enum('status', ['Started', 'Renewed', 'Cancelled'])->default('Started');
-            $table->bigInteger("device_id");
-            $table->bigInteger("app_id");
+            $table->bigInteger("device_id")->unsigned()->index();
+            $table->bigInteger("app_id")->unsigned()->index();
             $table->string("receipt");
             $table->datetime("expired_at");
             $table->timestamps();
+            $table->foreign('device_id')->references('id')->on('devices');
+            $table->foreign('app_id')->references('id')->on('apps');
         });
     }
 

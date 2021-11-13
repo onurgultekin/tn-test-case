@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\DeviceController;
+use App\Http\Controllers\API\SubscriptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,9 @@ Route::post('/mock-google', [DeviceController::class, 'mockGoogle']);
 
 Route::post('/mock-apple', [DeviceController::class, 'mockApple']);
 
-Route::post('/check-subscription', [DeviceController::class, 'checkSubscription']);
+Route::post('/check-subscription', [SubscriptionController::class, 'check']);
+
+Route::post('/report', [SubscriptionController::class, 'report']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
