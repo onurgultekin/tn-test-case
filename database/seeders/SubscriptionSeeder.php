@@ -17,7 +17,7 @@ class SubscriptionSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for($i=0; $i < 5000; $i++) {
+        for($i=0; $i < 15000; $i++) {
             Subscription::create([
                 'status' => $faker->randomElement($array = array ('Started','Renewed', 'Cancelled')),
                 'device_id' => $faker->numberBetween($min = 1, $max = 10),

@@ -40,7 +40,7 @@ class SubscriptionController extends Controller
                     Month(s.expired_at) AS month,
                     Day(s.expired_at) AS day,
                     d.os as operating_system,
-                    s.status AS Status,
+                    s.status AS status,
                     count(*) as total
             FROM  `subscriptions` s, `devices` d
             WHERE s.device_id = d.id
