@@ -1,0 +1,111 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Teknasyon",
+		"_postman_id": "3f68fdaf-a32e-d2c5-44b3-a95b3ab7ff2d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/register",
+			"request": {
+				"url": "http://localhost:8000/api/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"uuid\": \"12312-123123123-123123123124234-23423411\",\n\t\"app_id\": \"1\",\n\t\"os\": \"ios\",\n\t\"language\":\"tr\"\n}"
+				},
+				"description": "Register endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/check-subscription",
+			"request": {
+				"url": "http://localhost:8000/api/check-subscription",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_token\": \"$2y$10$8WWeDQLAyxQ.8KWI/3y3gOneJ0avICuM26O5EZazooR7.nymmbap2\"\n}"
+				},
+				"description": "Check subscription endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/mock-api",
+			"request": {
+				"url": "http://localhost:8000/api/mock-api",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receipt\": \"55998817\"\n}"
+				},
+				"description": "Verify Receipt"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/purchase",
+			"request": {
+				"url": "http://localhost:8000/api/purchase",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_token\": \"$2y$10$FlY3NW4hzU50y3yM.IeI4.qIynIdqpVIBSlGgg8dTYnE7xjDiltUS\",\n\t\"receipt\": \"55998817\"\n}"
+				},
+				"description": "Purchase"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/report",
+			"request": {
+				"url": "http://localhost:8000/api/report",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_token\": \"$2y$10$im8JHVYosJDLCRkPjU.fVeFXF3uxE2WiFtK8uiL7yhQAAJYrCuN6C\",\n\t\"receipt\": \"55998817\"\n}"
+				},
+				"description": "Report"
+			},
+			"response": []
+		}
+	]
+}
