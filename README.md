@@ -34,3 +34,7 @@ I created a Postman Collection also, you can find it in the project.
 ### postman_collection.json
 
 All API endpoints can be found in it.
+
+DB Diagram can be found in the file called
+
+### db-diagram.png
